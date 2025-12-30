@@ -8,7 +8,7 @@ import (
 
 type UserService interface {
 	Create(ctx context.Context, user entities.User) error
-	GetAll(ctx context.Context) ([]entities.User, error)
+	GetAll(ctx context.Context) ([]entities.ResponseUser, error)
 }
 
 type userService struct {
@@ -23,6 +23,6 @@ func (s *userService) Create(ctx context.Context, user entities.User) error {
 	return s.repo.Create(ctx, user)
 }
 
-func (s *userService) GetAll(ctx context.Context) ([]entities.User, error) {
+func (s *userService) GetAll(ctx context.Context) ([]entities.ResponseUser, error) {
 	return s.repo.FindAll(ctx)
 }
