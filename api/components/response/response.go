@@ -6,7 +6,17 @@ type APIResponse struct {
 	Success bool        `json:"success"`
 	Message string      `json:"message"`
 	Data    interface{} `json:"data,omitempty"`
+	Meta    interface{} `json:"meta,omitempty"`
 	Errors  interface{} `json:"errors,omitempty"`
+}
+
+func SuccessWithMeta(message string, data interface{}, meta interface{}) (int, APIResponse) {
+	return http.StatusOK, APIResponse{
+		Success: true,
+		Message: message,
+		Data:    data,
+		Meta:    meta,
+	}
 }
 
 func Success(message string, data interface{}) (int, APIResponse) {

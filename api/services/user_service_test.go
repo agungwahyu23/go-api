@@ -11,8 +11,8 @@ type mockRepo struct{}
 func (m mockRepo) Create(ctx context.Context, u entities.User) error {
 	return nil
 }
-func (m mockRepo) FindAll(ctx context.Context) ([]entities.User, error) {
-	return []entities.User{}, nil
+func (m mockRepo) FindAll(ctx context.Context) ([]entities.ResponseUser, error) {
+	return []entities.ResponseUser{}, nil
 }
 
 func TestCreateUser(t *testing.T) {
