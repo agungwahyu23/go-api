@@ -144,9 +144,21 @@ func (h *UserHandler) Update(c *gin.Context) {
 		return
 	}
 
+	dob, err := time.Parse("2006-01-02", req.DateOfBirth)
+	if err != nil {
+        // Handle error jika format tanggal salah
+        return 
+    }
+
 	user := entities.User{
 		Name:  req.Name,
 		Email: req.Email,
+		Username: req.Username,
+		Address: req.Address,
+		Phone: req.Phone,
+		DateOfBirth: dob,
+		Gender: req.Gender,
+		IsActive: req.IsActive,
 	}
 
 	if err := h.service.Update(c, id, user); err != nil {

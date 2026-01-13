@@ -120,9 +120,15 @@ func (r *userRepository) Update(
 ) error {
 	_, err := r.db.ExecContext(
 		ctx,
-		"UPDATE users SET name = ?, email = ? WHERE id = ?",
+		"UPDATE users SET name = ?, email = ?, username = ?, address = ?, phone = ?, date_of_birth = ?, gender = ?, is_active = ? WHERE id = ?",
 		user.Name,
 		user.Email,
+		user.Username,
+		user.Address,
+		user.Phone,
+		user.DateOfBirth,
+		user.Gender,
+		user.IsActive,
 		id,
 	)
 	return err
