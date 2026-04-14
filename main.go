@@ -26,8 +26,13 @@ func main() {
 	userService := services.NewUserService(userRepo)
 	userHandler := handlers.NewUserHandler(userService)
 
+	categoriesRepo := repositories.NewCategoriesRepository(db)
+	categoriesService := services.NewCategoriesService(categoriesRepo)
+	categoriesHandler := handlers.NewCategoriesHandler(categoriesService)
+
 	api := r.Group("/api")
 	routes.UserRoutes(api, userHandler)
+	routes.CategoriesRoutes(api, categoriesHandler)
 
 	r.Run(":" + app.Port)
 }
